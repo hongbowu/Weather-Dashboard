@@ -18,14 +18,14 @@
   flex-wrap: wrap;
 }
 .card {
-  margin: 5px;
-  background-color: rgb(3, 3, 52);
-  color: white;
+  margin: 5px !important;
+  background-color: rgb(3, 3, 52) !important;
+  color: white !important;
 }
 button {
-  border-radius: 5px;
-  background-color: rgb(119, 95, 236);
-  color: aliceblue;
+  border-radius: 5px !important;
+  background-color: rgb(119, 95, 236) !important;
+  color: aliceblue !important;
 }
 p {
   font-size: 200%;
