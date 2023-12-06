@@ -7,3 +7,26 @@
   word-spacing: 2rem;
   font-size: 300%;
 }
+.container {
+  margin-top: 20px;
+}
+.search {
+  margin-bottom: 20px;
+}
+.weatherHolder {
+  display: flex;
+  flex-wrap: wrap;
+}
+.card {
+  margin: 5px;
+  background-color: rgb(3, 3, 52);
+  color: white;
+}
+button {
+  border-radius: 5px;
+  background-color: rgb(119, 95, 236);
+  color: aliceblue;
+}
+p {
+  font-size: 200%;
+}
