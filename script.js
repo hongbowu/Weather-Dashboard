@@ -121,5 +121,10 @@ function saveCity() {
     cityCollector.append(listItem);
   }
 }
-
+function setInput(event) {
+  event.preventDefault;
+  getCity();
+  saveCity();
+  getApi();
+}
 //interaction
