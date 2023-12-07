@@ -6,6 +6,18 @@ let cityName = [];
 let cityHolder = [];
 apiKey = "7b80215f2592be31ee5ecbe7b3f91df1";
 //functions
+$(document).ready(function () {
+  let defaultCity = localStorage.getItem("defaultCity");
+
+  if (!defaultCity) {
+    defaultCity = "new york";
+    localStorage.setItem("defaultCity", defaultCity);
+  }
+  input.val(defaultCity);
+
+  getApi();
+});
+
 function temperatureFahrenheit(data) {
   return (((data - 273.15) * 9) / 5 + 32).toFixed(2);
 }
