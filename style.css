@@ -17,10 +17,16 @@
   display: flex;
   flex-wrap: wrap;
 }
-.card {
-  margin: 5px !important;
+.card1,
+.card2,
+.card3,
+.card4,
+.card5,
+.card6 {
+  margin: 10px !important;
   background-color: rgb(3, 3, 52) !important;
   color: white !important;
+  height: 200px;
 }
 button {
   border-radius: 5px !important;
