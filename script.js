@@ -36,6 +36,14 @@ function convertUnixToDateTime(unixTimestamp) {
   return formattedDateTime;
 }
 
+function icon(iconID) {
+  let iconUrl = `https://openweathermap.org/img/wn/${iconID}.png`;
+
+  let imgEl = $("<img>");
+  imgEl.attr("src", iconUrl);
+  return imgEl;
+}
+
 function getApi() {
   let requestUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${input.val()}&appid=${apiKey}`;
   fetch(requestUrl)
@@ -45,61 +53,61 @@ function getApi() {
     .then(function (data) {
       console.log(data);
       //current day
+      let list0 = data.list[0];
       $(".card1 ul li#city").text(
-        `(${data.city.name} ${convertUnixToDateTime(data.list[0].dt)})`
+        `(${data.city.name} ${convertUnixToDateTime(list0.dt)})`
       );
+      $(".card1 ul li#icon").append(icon(list0.weather[0].icon));
       $(".card1 ul li#temp").text(
-        `temp:${temperatureFahrenheit(data.list[0].main.temp)}\u2109`
+        `temp:${temperatureFahrenheit(list0.main.temp)}\u2109`
       );
-      $(".card1 ul li#wind").text(`wind:${data.list[0].wind.speed}MPH`);
-      $(".card1 ul li#humidity").text(
-        `humidity:${data.list[0].main.humidity}%`
-      );
+      $(".card1 ul li#wind").text(`wind:${list0.wind.speed}MPH`);
+      $(".card1 ul li#humidity").text(`humidity:${list0.main.humidity}%`);
       //coming days 1
-      $(".card2 ul li#date").text(`${convertUnixToDateTime(data.list[8].dt)}`);
+      let list8 = data.list[8];
+      $(".card2 ul li#date").text(`${convertUnixToDateTime(list8.dt)}`);
+      $(".card2 ul li#icon").append(icon(list8.weather[0].icon));
       $(".card2 ul li#temp").text(
-        `temp:${temperatureFahrenheit(data.list[8].main.temp)}\u2109`
+        `temp:${temperatureFahrenheit(list8.main.temp)}\u2109`
       );
-      $(".card2 ul li#wind").text(`wind:${data.list[8].wind.speed}MPH`);
-      $(".card2 ul li#humidity").text(
-        `humidity:${data.list[8].main.humidity}%`
-      );
+      $(".card2 ul li#wind").text(`wind:${list8.wind.speed}MPH`);
+      $(".card2 ul li#humidity").text(`humidity:${list8.main.humidity}%`);
       //coming days 2
-      $(".card3 ul li#date").text(`${convertUnixToDateTime(data.list[16].dt)}`);
+      let list16 = data.list[16];
+      $(".card3 ul li#date").text(`${convertUnixToDateTime(list16.dt)}`);
+      $(".card3 ul li#icon").append(icon(list16.weather[0].icon));
       $(".card3 ul li#temp").text(
-        `temp:${temperatureFahrenheit(data.list[16].main.temp)}\u2109`
+        `temp:${temperatureFahrenheit(list16.main.temp)}\u2109`
       );
-      $(".card3 ul li#wind").text(`wind:${data.list[16].wind.speed}MPH`);
-      $(".card3 ul li#humidity").text(
-        `humidity:${data.list[16].main.humidity}%`
-      );
+      $(".card3 ul li#wind").text(`wind:${list16.wind.speed}MPH`);
+      $(".card3 ul li#humidity").text(`humidity:${list16.main.humidity}%`);
       //coming days 3
-      $(".card4 ul li#date").text(`${convertUnixToDateTime(data.list[24].dt)}`);
+      let list24 = data.list[24];
+      $(".card4 ul li#date").text(`${convertUnixToDateTime(list24.dt)}`);
+      $(".card4 ul li#icon").append(icon(list24.weather[0].icon));
       $(".card4 ul li#temp").text(
-        `temp:${temperatureFahrenheit(data.list[24].main.temp)}\u2109`
+        `temp:${temperatureFahrenheit(list24.main.temp)}\u2109`
       );
-      $(".card4 ul li#wind").text(`wind:${data.list[24].wind.speed}MPH`);
-      $(".card4 ul li#humidity").text(
-        `humidity:${data.list[24].main.humidity}%`
-      );
+      $(".card4 ul li#wind").text(`wind:${list24.wind.speed}MPH`);
+      $(".card4 ul li#humidity").text(`humidity:${list24.main.humidity}%`);
       //coming days 4
-      $(".card5 ul li#date").text(`${convertUnixToDateTime(data.list[32].dt)}`);
+      let list32 = data.list[32];
+      $(".card5 ul li#date").text(`${convertUnixToDateTime(list32.dt)}`);
+      $(".card5 ul li#icon").append(icon(list32.weather[0].icon));
       $(".card5 ul li#temp").text(
-        `temp:${temperatureFahrenheit(data.list[32].main.temp)}\u2109`
+        `temp:${temperatureFahrenheit(list32.main.temp)}\u2109`
       );
-      $(".card5 ul li#wind").text(`wind:${data.list[32].wind.speed}MPH`);
-      $(".card5 ul li#humidity").text(
-        `humidity:${data.list[32].main.humidity}%`
-      );
+      $(".card5 ul li#wind").text(`wind:${list32.wind.speed}MPH`);
+      $(".card5 ul li#humidity").text(`humidity:${list32.main.humidity}%`);
       //coming days 5
-      $(".card6 ul li#date").text(`${convertUnixToDateTime(data.list[39].dt)}`);
+      let list39 = data.list[39];
+      $(".card6 ul li#date").text(`${convertUnixToDateTime(list39.dt)}`);
+      $(".card6 ul li#icon").append(icon(list39.weather[0].icon));
       $(".card6 ul li#temp").text(
-        `temp:${temperatureFahrenheit(data.list[39].main.temp)}\u2109`
+        `temp:${temperatureFahrenheit(list39.main.temp)}\u2109`
       );
-      $(".card6 ul li#wind").text(`wind:${data.list[39].wind.speed}MPH`);
-      $(".card6 ul li#humidity").text(
-        `humidity:${data.list[39].main.humidity}%`
-      );
+      $(".card6 ul li#wind").text(`wind:${list39.wind.speed}MPH`);
+      $(".card6 ul li#humidity").text(`humidity:${list39.main.humidity}%`);
     });
 }
 //storage
