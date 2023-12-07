@@ -94,23 +94,30 @@ getApi();
 //storage
 function getCity() {
   // check to see if cityName already exists in local storage
-  // if it already exists, you need to parse the existing array
-  // then add new city
-  // then stringify
-  // then set localstorage to new array
+  if (cityName) {
+    // if it already exists, you need to parse the existing array
+    JSON.parse(cityName);
+    // then add new city
+    cityName = cityName.push(input.val);
+    // then stringify
+    localStorage.setItem("cityName", JSON.stringify(input.val));
+    // then set localstorage to new array
+  }
   // if it doesn't exist yet
-  // use new array and add new city to it
-  // then stringify
-  // then set localstorage
-  localStorage.setItem("cityName", JSON.stringify(input.val));
-  cityName = cityName.push(input.val);
+  if (!cityName) {
+    // use new array and add new city to it
+    cityName = input.val;
+    // then stringify
+    localStorage.setItem("cityName", JSON.stringify(input.val));
+    // then set localstorage
+  }
 }
 function saveCity() {
   let cityHolder = JSON.parse(localStorage.getItem("cityName"));
   // loop through cityholder
-  for (let i = 0; i < cityName.length; i++) {
+  for (let i = 0; i < cityHolder.length; i++) {
     const listItem = $("<li>");
-    listItem.text(cityName[i]);
+    listItem.text(cityHolder[i]);
     cityCollector.append(listItem);
   }
 }
