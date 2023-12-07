@@ -3,6 +3,7 @@ let input = $("#searching");
 let button = $("button");
 let cityCollector = $("#cityCollect");
 let cityName = [];
+let cityHolder = [];
 apiKey = "7b80215f2592be31ee5ecbe7b3f91df1";
 //functions
 function temperatureFahrenheit(data) {
@@ -24,8 +25,7 @@ function convertUnixToDateTime(unixTimestamp) {
 }
 
 function getApi() {
-  input.val = "new york";
-  let requestUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${input.val}&appid=${apiKey}`;
+  let requestUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${input.val()}&appid=${apiKey}`;
   fetch(requestUrl)
     .then(function (response) {
       return response.json();
@@ -90,42 +90,31 @@ function getApi() {
       );
     });
 }
-getApi();
 //storage
 function getCity() {
-  // check to see if cityName already exists in local storage
-  if (cityName) {
-    // if it already exists, you need to parse the existing array
-    JSON.parse(cityName);
-    // then add new city
-    cityName = cityName.push(input.val);
-    // then stringify
-    localStorage.setItem("cityName", JSON.stringify(input.val));
-    // then set localstorage to new array
-  }
-  // if it doesn't exist yet
-  if (!cityName) {
-    // use new array and add new city to it
-    cityName = input.val;
-    // then stringify
-    localStorage.setItem("cityName", JSON.stringify(input.val));
-    // then set localstorage
+  let cityName = input.val().trim();
+  if (cityName && !cityHolder.includes(cityName)) {
+    cityHolder.push(cityName);
+    localStorage.setItem("cityName", JSON.stringify(cityHolder));
   }
 }
+
 function saveCity() {
-  let cityHolder = JSON.parse(localStorage.getItem("cityName"));
-  // loop through cityholder
+  let cityHolder = JSON.parse(localStorage.getItem("cityName")) || [];
+  cityCollector.empty();
   for (let i = 0; i < cityHolder.length; i++) {
     const listItem = $("<li>");
     listItem.text(cityHolder[i]);
     cityCollector.append(listItem);
   }
 }
+
 function setInput(event) {
   event.preventDefault;
+
   getCity();
   saveCity();
   getApi();
 }
 //interaction
-button.add("submit", setInput);
+button.on("click", setInput);
