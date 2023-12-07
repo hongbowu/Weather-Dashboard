@@ -128,3 +128,4 @@ function setInput(event) {
   getApi();
 }
 //interaction
+button.add("submit", setInput);
