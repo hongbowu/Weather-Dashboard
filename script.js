@@ -105,12 +105,14 @@ function getCity() {
   localStorage.setItem("cityName", JSON.stringify(input.val));
   cityName = cityName.push(input.val);
 }
-function logCity() {
+function saveCity() {
   let cityHolder = JSON.parse(localStorage.getItem("cityName"));
   // loop through cityholder
-  const listItem = $("<li>");
-  listItem.text();
-  cityCollector.append(listItem);
+  for (let i = 0; i < cityName.length; i++) {
+    const listItem = $("<li>");
+    listItem.text(cityName[i]);
+    cityCollector.append(listItem);
+  }
 }
 
 //interaction
